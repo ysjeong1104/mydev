@@ -1,0 +1,39 @@
+	plugins {
+	id 'org.springframework.boot' version '2.7.4'
+	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+	id 'java'
+}
+
+group = 'com.study'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+//	implementation(enforcedPlatform("com.oracle.database.jdbc:ojdbc-bom:21.7.0.0"))
+	implementation 'com.oracle.database.jdbc:ojdbc8:21.7.0.0'
+	implementation 'com.oracle.database.jdbc:ucp'
+	// Additional Jars for using Oracle Wallets
+	implementation 'com.oracle.database.security:oraclepki'
+	implementation 'com.oracle.database.security:osdt_core'
+	implementation 'com.oracle.database.security:osdt_cert'
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
